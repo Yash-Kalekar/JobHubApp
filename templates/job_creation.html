@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Job</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* background-color: #f0f0f0; */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url(https://images.pexels.com/photos/267569/pexels-photo-267569.jpeg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: transparent;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 999; /* Ensure it's above other elements */
+        }
+        .form-container {
+            width: 80%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            color: darkblue;
+            margin-top: 20px; /* Adjusted for spacing */
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-container input[type="text"],
+        .form-container input[type="number"],
+        .form-container textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-container button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px; /* Adjusted for spacing */
+        }
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'home' %}" class="back-button">Back</a>
+    <div class="form-container">
+        <h2>Create Job</h2>
+        <form action="{% url 'job_creation' %}" method="post">
+            {% csrf_token %}
+            <label for="id_job_title">Job Title:</label>
+            {{ form.job_title }}
+            <label for="id_company_name">Company Name:</label>
+            {{ form.company_name }}
+            <label for="id_salary">Salary:</label>
+            {{ form.salary }}
+            <label for="id_job_description">Job Description:</label>
+            {{ form.job_description }}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

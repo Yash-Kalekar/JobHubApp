@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            /* background-color: #f0f0f0; */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: url(https://images.pexels.com/photos/188035/pexels-photo-188035.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: transparent;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 999; /* Ensure it's above other elements */
+        }
+        .job-listings-container {
+            font-size: 18px;
+            width: 80%;
+            max-width: 800px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            height: 80%;
+        }
+        .job-item {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .job-item p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'home' %}" class="back-button">Back</a>
+    <div class="job-listings-container">
+        <h2 style="color: navy;">Job Listings</h2>
+        {% for job in data %}
+        <div class="job-item">
+            <p><strong>Job Title:</strong> {{ job.job_title }}</p>
+            <p><strong>Company Name:</strong> {{ job.company_name }}</p>
+            <p><strong>Salary:</strong> {{ job.salary }}</p>
+            <p><strong>Job Description:</strong> {{ job.job_description }}</p>
+        </div>
+        {% empty %}
+        <p>No jobs available.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
